@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Pribadi | Kahfi Bagus Radana</title>
+
+  <!-- =====================
+       INTERNAL CSS (GABUNGAN)
+       ===================== -->
+  <style>
+    /* =====================
+       VARIABEL TEMA
+       ===================== */
+    :root {
+      --bg: #f8fafc;
+      --text: #e5e7eb;
+      --primary: #22d3ee;
+      --secondary: #e2e8f0;
+      --card: #5d7381;
+      --muted: #e5e7eb;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --text: #e5e7eb;
+      --primary: #22d3ee;
+      --secondary: #1e293b;
+      --card: #212f55;
+      --muted: #e5e7eb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(circle at top, #1e293b, var(--bg));
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.5s, color 0.4s;
+    }
+    body {
+  font-family: system-ui, sans-serif;
+  background:
+    /* Grid garis lintang & bujur */
+    linear-gradient(
+      rgba(255,255,255,0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.04) 1px,
+      transparent 1px
+    ),
+    /* Glow data spasial */
+    radial-gradient(circle at top left, rgba(34,211,238,0.18), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(56,189,248,0.12), transparent 50%),
+    /* Base background */
+    linear-gradient(180deg, #020617, var(--bg));
+
+  background-size:
+    60px 60px,
+    60px 60px,
+    auto,
+    auto,
+    auto;
+
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.6s ease, color 0.4s;
+}
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1.5rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--text-strong);
+    }
+
+    /* =====================
+       HERO / HEADER (BARU)
+       ===================== */
+    header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-strong);
+}
+
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .header-desc {
+      max-width: 520px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      color: var(--text-soft);
+}
+
+.header-desc {
+  color: var(--text-soft);
+}
+
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.25s, opacity 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #38bdf8);
+      color: white;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--muted);
+      color: var(--text);
+    }
+
+    /* =====================
+       SOCIAL BAR
+       ===================== */
+    .socials {
+      max-width: 960px;
+      margin: auto;
+      padding: 0 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .social-card {
+      background: var(--card);
+      padding: 1.2rem;
+      border-radius: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .social-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .social-card span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .social-card h3 {
+      margin-top: 0.3rem;
+      color: var(--primary);
+    }
+
+    /* =====================
+       PROFIL SINGKAT (ASLI)
+       ===================== */
+    .about {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    /* =====================
+       KEAHLIAN (ASLI)
+       ===================== */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      padding: 1.2rem;
+      border-radius: 0.8rem;
+      text-align: center;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      background: var(--secondary);
+    }
+
+    .skill-card a {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* =====================
+       FOOTER & FORM (ASLI)
+       ===================== */
+    footer {
+  background-color: #5d7381;
+  padding: 2rem 1.5rem;
+}
+    form {
+      display: grid;
+      gap: 0.8rem;
+      max-width: 500px;
+    }
+
+    input, textarea {
+      padding: 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid #cbd5f5;
+    }
+
+    .messages {
+      margin-top: 1.5rem;
+      display: none;
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 0.8rem;
+    }
+    /* =====================
+   FOOTER GRID LAYOUT
+   ===================== */
+footer {
+  background-color: #5d7381;
+  padding: 2.5rem 1.5rem;
+}
+
+.footer-grid {
+  max-width: 960px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+}
+
+/* =====================
+   KOLOM KIRI
+   ===================== */
+.footer-left h2 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* =====================
+   KOLOM KANAN
+   ===================== */
+.footer-right {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(6px);
+  color: #f8fafc;
+}
+
+.footer-right h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-right p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  color: #e2e8f0;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  margin: 1rem 0;
+}
+
+/* Quote */
+.footer-right blockquote {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #e0f2fe;
+  border-left: 3px solid #22d3ee;
+  padding-left: 0.8rem;
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    /* =====================
+       TOGGLE THEME
+       ===================== */
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--card);
+      border: none;
+      padding: 0.5rem 0.7rem;
+      border-radius: 0.6rem;
+      cursor: pointer;
+    }
+    /* =====================
+   FRAME PESAN (KONTAINER)
+   ===================== */
+.messages {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* =====================
+   FRAME TIAP PESAN
+   ===================== */
+.message-item {
+  position: relative;
+  margin-bottom: 0.9rem;
+  padding: 0.8rem 0.9rem 0.8rem 1.1rem;
+  border-radius: 0.7rem;
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Garis aksen kiri */
+.message-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #22d3ee,
+    #38bdf8
+  );
+  border-radius: 0.7rem 0 0 0.7rem;
+}
+
+/* Hover halus */
+.message-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Email pengirim */
+.message-item strong {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+  color: #e0f2fe;
+}
+  </style>
+</head>
+
+<body>
+  <button class="theme-toggle" id="themeToggle">🌙 / ☀️</button>
+
+  <!-- =====================
+       HEADER
+       ===================== -->
+  <header>
+    <img src="c:\Users\Asus\OneDrive\Website ku\my photo.jpeg" class="avatar" alt="Foto Profil" />
+    <h1>Kahfi Bagus Radana</h1>
+    <p>Mahasiswa Kartografi dan Penginderaan Jauh 2024<br>Universitas Gadjah Mada</p>
+
+    <div class="header-desc">
+      Berfokus pada pemetaan, analisis spasial, dan penginderaan jauh untuk
+      lingkungan, kebencanaan, dan pengembangan wilayah.
+    </div>
+
+    <div class="header-actions">
+      <a href="file:///C:/Users/Asus/OneDrive/Website%20ku/CV_Kahfi%20Bagus%20Radana%20(3).pdf" class="btn btn-primary"> CV Saya</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=kahfibagusradana@mail.ugm.ac.id" target="_blank" class="btn btn-outline">Email </a>
+    </div>
+  </header>
+
+  <!-- SOCIAL BAR -->
+  <section class="socials">
+    <a href="https://www.instagram.com/kahfiradana_?igsh=dnJscDVoc3JwZWty&utm_source=qr" class="social-card"><span>Instagram</span><h3>@kahfiradana_</h3></a>
+    <a href="https://www.tiktok.com/@utm_49s?_r=1&_t=ZS-93aDgd0lOzw" class="social-card"><span>TikTok</span><h3>@utm_49s</h3></a>
+    <a href="https://www.linkedin.com/in/kahfi-bagus-radana-41193634a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="social-card"><span>LinkedIn</span><h3>Kahfi Bagus Radana</h3></a>
+  </section>
+
+  <!-- MAIN -->
+  <main>
+    <section class="about">
+      <h2>Tentang Saya</h2>
+      <p>
+        Saya adalah mahasiswa program studi Kartografi dan Penginderaan Jauh Universitas Gadjah Mada Angkatan 2024. Saya adalah orang yang aktif dalam berorganisasi serta memiliki pengalaman mengikuti kegiatan volunteer di masyarakat. Hal ini karena saya memiliki minat yang kuat untuk mengkaji isu-isu sosial yang berada di dalam masyarakat. Dalam berorganisasi, saya memiliki kelebihan dalam mengatur Waktu dengan baik, mudah beradaptasi dalam tim, serta disiplin.
+      </p>
+    </section>
+
+    <section>
+      <h2>Keahlian</h2>
+      <div class="skills">
+        <div class="skill-card"><a href="https://qgis.org">Basic QGIS</a></div>
+        <div class="skill-card"><a href="https://www.esri.com">Basic ArcGIS</a></div>
+        <div class="skill-card"><a href="https://www.ENVI.com">Basic ENVI</a></div>
+        <div class="skill-card"><a href="https://earthengine.google.com">Team work</a></div>
+        <div class="skill-card"><a href="https://developer.mozilla.org">Public Speaking</a></div>
+        <div class="skill-card"><a href="https://www.adobe.com/products/photoshop.html">Photo Editing</a></div> 
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+  <div class="footer-grid">
+
+    <!-- KOLOM KIRI: FORM -->
+    <div class="footer-left">
+      <h2>Kritik & Saran</h2>
+
+      <form id="feedbackForm">
+        <input type="email" id="email" placeholder="Email (wajib)" required />
+        <textarea id="message" placeholder="Pesan"></textarea>
+        <button class="btn btn-primary">Kirim</button>
+      </form>
+
+      <div class="messages" id="messagesBox"></div>
+    </div>
+
+    <!-- KOLOM KANAN: INFO -->
+    <div class="footer-right">
+      <h3>Tentang Website Ini</h3>
+      <p>
+        Website ini dibuat sebagai media personal branding dan dokumentasi
+        akademik saya sebagai mahasiswa Kartografi dan Penginderaan Jauh
+        Universitas Gadjah Mada.
+      </p>
+
+      <p>
+        Kritik dan saran sangat saya harapkan sebagai bahan evaluasi dan
+        pengembangan website ini ke depannya.
+      </p>
+
+      <div class="footer-divider"></div>
+
+      <blockquote>
+        “Peta bukan hanya representasi ruang,  
+        tetapi alat untuk memahami kehidupan.”
+      </blockquote>
+    </div>
+
+  </div>
+</footer>
+
+
+  <!-- =====================
+       JAVASCRIPT (ASLI + GABUNGAN)
+       ===================== -->
+  <script>
+  // =====================
+  // THEME TOGGLE
+  // =====================
+  const toggleBtn = document.getElementById("themeToggle");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    prefersDark ? "dark" : "light"
+  );
+
+  toggleBtn.addEventListener("click", () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme === "dark" ? "light" : "dark"
+    );
+  });
+
+  // =====================
+  // FORM + AUTO EXPIRE 30 HARI
+  // =====================
+  const form = document.getElementById("feedbackForm");
+  const messagesBox = document.getElementById("messagesBox");
+  const emailInput = document.getElementById("email");
+  const messageInput = document.getElementById("message");
+
+  const STORAGE_KEY = "feedbackMessages";
+  const EXPIRE_DAYS = 30;
+  const EXPIRE_TIME = EXPIRE_DAYS * 24 * 60 * 60 * 1000;
+
+  // Ambil data lama
+  let storedMessages = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+  // Hapus pesan yang lebih dari 30 hari
+  function cleanupMessages() {
+    const now = Date.now();
+    storedMessages = storedMessages.filter(item => {
+      return now - item.timestamp < EXPIRE_TIME;
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(storedMessages));
+  }
+
+  // Tampilkan pesan
+  function renderMessages() {
+    messagesBox.innerHTML = "";
+
+    if (storedMessages.length === 0) {
+      messagesBox.style.display = "none";
+      return;
+    }
+
+    storedMessages.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "message-item";
+      div.innerHTML = `
+        <strong>${item.email}</strong><br>
+        ${item.message}
+      `;
+      messagesBox.appendChild(div);
+    });
+
+    messagesBox.style.display = "block";
+  }
+
+  // Jalankan saat halaman dibuka
+  cleanupMessages();
+  renderMessages();
+
+  // Simpan pesan baru
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const emailValue = emailInput.value.trim();
+    const messageValue = messageInput.value.trim();
+
+    if (!emailValue || !messageValue) {
+      alert("Email dan pesan wajib diisi.");
+      return;
+    }
+
+    const newMessage = {
+      email: emailValue,
+      message: messageValue,
+      timestamp: Date.now()
+    };
+
+    storedMessages.push(newMessage);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(storedMessages));
+
+    renderMessages();
+    form.reset();
+
+    messagesBox.scrollIntoView({ behavior: "smooth" });
+  });
+</script>
+
+</body>
+</html>
